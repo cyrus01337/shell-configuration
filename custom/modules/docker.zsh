@@ -61,4 +61,3 @@ if silence which docker; then
         silence sudo chmod 666 /run/docker.sock
     fi
 fi
-

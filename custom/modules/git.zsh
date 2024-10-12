@@ -24,4 +24,3 @@ if which git &> /dev/null; then
     alias gism="git-submodule-initialise"
     alias gusm="git-submodule-update"
 fi
-

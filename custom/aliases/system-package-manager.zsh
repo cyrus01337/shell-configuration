@@ -41,4 +41,3 @@ elif exists dnf; then
     alias spdapr="$repository_manager enable"
     alias spdrpr="$repository_manager remove"
 fi
-

@@ -10,4 +10,3 @@ if (
 ); then
     echo "chezmoi auto-update service found, don't forget to enable it with \"systemctl --user enable --now chezmoi.service\""
 fi
-
