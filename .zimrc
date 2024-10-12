@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+ZSH_AUTOSUGGEST_MANUAL_REBIND=true
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(brackets main)
+
+zmodule duration-info
+zmodule environment
+zmodule git-info
+zmodule input
+zmodule utility
+
+zmodule zsh-users/zsh-completions --fpath src --fpath "$ZDOTDIR/.zcompletions"
+zmodule completion
+
+zmodule zsh-users/zsh-autosuggestions
+zmodule zsh-users/zsh-syntax-highlighting
+zmodule dracula/zsh-syntax-highlighting --name zsh-syntax-highlighting-dracula
+zmodule zsh-users/zsh-history-substring-search
+zmodule MichaelAquilina/zsh-you-should-use
+zmodule MichaelAquilina/zsh-auto-notify
+zmodule MichaelAquilina/zsh-history-filter
