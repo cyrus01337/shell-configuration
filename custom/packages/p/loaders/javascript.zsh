@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 P_PACKAGE_MANAGER=""
 PX_COMMAND=""
 

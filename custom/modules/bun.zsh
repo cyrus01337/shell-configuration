@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 if [[ -s "$HOME/.bun/_bun" ]]; then
     export BUN_INSTALL="$HOME/.bun"
     export PATH="$PATH:$BUN_INSTALL/bin"

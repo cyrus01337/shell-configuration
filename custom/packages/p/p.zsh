@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 # https://medium.com/@chantastic/p-525e68f17e56
 FILE="${(%):-%x}"
 P_DIRECTORY=$(dirname $FILE)
@@ -19,7 +19,7 @@ auto_detect_package_manager() {
 
         if [[ $? == 0 ]]; then
             PROJECT_LANGUAGE=$language
-            # Despite arrays in Bash being zero-indexed, the 0th element refuses
+            # Despite arrays in zsh being zero-indexed, the 0th element refuses
             # to exist for reasons I am humanly fucking incapable of
             # understanding - if someone knows why, please reach out as this
             # feels like a reach in itself

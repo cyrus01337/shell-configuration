@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 if which tmux &> /dev/null && [[ ! "$TMUX" ]]; then
     tmux new-session -A -s main
 

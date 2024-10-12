@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 export DENO_INSTALL="$HOME/.deno"
 
 if which deno &> /dev/null || [[ -d $DENO_INSTALL ]]; then

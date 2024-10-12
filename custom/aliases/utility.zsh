@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 ZSHRC_PATH="$ZDOTDIR/.zshrc"
 
 alias lsa="ls -a"

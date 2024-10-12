@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 . $ZDOTDIR/setup-zim.zsh
 
 if [[ ! $INITIALISED_MODULES ]]; then
