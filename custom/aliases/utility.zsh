@@ -12,7 +12,8 @@ alias sshq="ssh -q"
 alias scpq="scp &> /dev/null"
 
 edit() {
-    command $EDITOR $@
+    cd $(dirname $1)
+    command $EDITOR $1
 }
 
 alias z="edit $ZDOTDIR/ && . $ZSHRC_PATH"

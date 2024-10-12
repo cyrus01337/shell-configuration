@@ -25,19 +25,19 @@ elif exists dnf; then
 fi
 
 alias sp="$package_manager"
-alias spi="$package_manager install"
-alias spr="$package_manager remove"
-alias spu="$package_manager update"
-alias spup="$package_manager upgrade"
+alias spi="$package_manager install $DEFAULT_PACKAGE_MANAGER_FLAGS"
+alias spr="$package_manager remove $DEFAULT_PACKAGE_MANAGER_FLAGS"
+alias spu="$package_manager update $DEFAULT_PACKAGE_MANAGER_FLAGS"
+alias spup="$package_manager upgrade $DEFAULT_PACKAGE_MANAGER_FLAGS"
 alias spp="$package_manager purge"
-alias spar="$package_manager autoremove"
+alias spar="$package_manager autoremove $DEFAULT_PACKAGE_MANAGER_FLAGS"
 
 if exists apt-get; then
-    alias spdup="$package_manager dist-upgrade"
-    alias spdapr="$repository_manager"
-    alias spdrpr="$repository_manager --remove"
+    alias spdup="$package_manager dist-upgrade $DEFAULT_PACKAGE_MANAGER_FLAGS"
+    alias spdapr="$repository_manager $DEFAULT_REPOSITORY_MANAGER_FLAGS"
+    alias spdrpr="$repository_manager $DEFAULT_REPOSITORY_MANAGER_FLAGS --remove"
 elif exists dnf; then
-    alias spdup="$package_manager upgrade"
-    alias spdapr="$repository_manager enable"
-    alias spdrpr="$repository_manager remove"
+    alias spdup="$package_manager upgrade $DEFAULT_PACKAGE_MANAGER_FLAGS"
+    alias spdapr="$repository_manager enable $DEFAULT_REPOSITORY_MANAGER_FLAGS"
+    alias spdrpr="$repository_manager remove $DEFAULT_REPOSITORY_MANAGER_FLAGS"
 fi
