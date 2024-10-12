@@ -10,28 +10,6 @@ SUPPORTED_LANGUAGES=(
 )
 
 auto_detect_package_manager() {
-    # if [[ -f "package-lock.json" ]]; then
-    #     PROJECT_LANGUAGE="javascript"
-    #     P_PACKAGE_MANAGER="npm"
-    #     PX_COMMAND="npx"
-    # elif [[ -f "yarn.lock" ]]; then
-    #     PROJECT_LANGUAGE="javascript"
-    #     P_PACKAGE_MANAGER="yarn"
-    #     PX_COMMAND="yarn dlx"
-    # elif [[ -f "pnpm-lock.yaml" ]]; then
-    #     PROJECT_LANGUAGE="javascript"
-    #     P_PACKAGE_MANAGER="pnpm"
-    #     PX_COMMAND="pnpx"
-    # elif [[ -f "deno.lock" ]]; then
-    #     PROJECT_LANGUAGE="javascript"
-    #     P_PACKAGE_MANAGER="deno"
-    #     PX_COMMAND="deno run"
-    # elif [[ -f "bun.lockb" ]]; then
-    #     PROJECT_LANGUAGE="javascript"
-    #     P_PACKAGE_MANAGER="bun"
-    #     PX_COMMAND="bunx"
-    # fi
-
     for language in $SUPPORTED_LANGUAGES; do
         loader_found="detect_${language}"
 

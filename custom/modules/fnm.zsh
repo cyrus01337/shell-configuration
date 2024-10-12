@@ -6,4 +6,3 @@ if [[ -d "$FNM_DIRECTORY" ]]; then
 
     eval "$(fnm env --use-on-cd --shell zsh)"
 fi
-
