@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 NEOVIM_CONFIGURATION_DIRECTORY="$HOME/.config/nvim"
 
 if which nvim &> /dev/null; then
@@ -19,4 +19,3 @@ if which nvim &> /dev/null; then
         cd "$original_directory"
     }
 fi
-

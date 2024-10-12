@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 export PYENV_ROOT="$HOME/.local/pyenv"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=true
 VENV_ACTIVATION_SCRIPT=".venv/bin/activate"
@@ -11,4 +11,3 @@ if [[ -d "$PYENV_ROOT" ]]; then
 elif [[ -f $VENV_ACTIVATION_SCRIPT ]]; then
     source $VENV_ACTIVATION_SCRIPT
 fi
-

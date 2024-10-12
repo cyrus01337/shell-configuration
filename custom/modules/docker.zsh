@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 USER_IN_DOCKER_GROUP=$(id -nG "$USER" | grep docker)
 
 silence() {

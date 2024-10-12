@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 export GITHUB_USERNAME="cyrus01337"
 
 if which git &> /dev/null; then

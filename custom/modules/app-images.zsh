@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 APP_IMAGES_DIRECTORY="$HOME/Applications"
 
 if [[ -d "$APP_IMAGES_DIRECTORY" ]]; then

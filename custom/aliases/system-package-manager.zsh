@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 DEFAULT_PACKAGE_MANAGER_FLAGS="-y"
 DEFAULT_REPOSITORY_MANAGER_FLAGS="-y"
 

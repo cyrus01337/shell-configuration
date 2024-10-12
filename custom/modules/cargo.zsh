@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 CARGO_PATH="$HOME/.cargo"
 
 if [[ -d $CARGO_PATH ]]; then

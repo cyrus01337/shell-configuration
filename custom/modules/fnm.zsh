@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 FNM_DIRECTORY="$HOME/.local/share/fnm"
 
 if [[ -d "$FNM_DIRECTORY" ]]; then

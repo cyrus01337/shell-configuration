@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 export AUTO_UPDATE_CHEZMOI_SERVICE="$HOME/.config/systemd/user/chezmoi.service"
 
 if (
