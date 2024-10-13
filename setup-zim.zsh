@@ -1,4 +1,4 @@
-#!/usr/bin env zsh
+#!/usr/bin/env zsh
 ZIM_CONFIG_FILE="$ZDOTDIR/.zimrc"
 ZIM_HOME="$HOME/.config/zim"
 
