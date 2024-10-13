@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 ZSH_AUTOSUGGEST_MANUAL_REBIND=true
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(brackets main)
 
