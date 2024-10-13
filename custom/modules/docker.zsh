@@ -1,16 +1,12 @@
 #!/usr/bin/env zsh
-USER_IN_DOCKER_GROUP=$(id -nG "$USER" | grep docker)
-
 silence() {
-    command $1 &> /dev/null;
+    command $1 &> /dev/null
+
+    return $?
 }
 
 if silence which docker; then
-    alias d="docker"
-    alias dc="docker compose"
-    alias dcb="dc build"
-    alias dcr="dc down && dc up"
-    alias docker-images="docker image ls"
+    USER_IN_DOCKER_GROUP=$(id -nG "$USER" | grep docker)
 
     ollama() {
         echo "Preparing Ollama..."
