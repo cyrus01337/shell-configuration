@@ -1,8 +1,16 @@
 #!/usr/bin/env zsh
 . $ZDOTDIR/setup-zim.zsh
 
+if [[ ! $RAN_BEFORE_SCRIPTS ]]; then
+    for script in $ZDOTDIR/before/*.zsh; do
+        . $script
+    done
+
+    RAN_BEFORE_SCRIPTS=true
+fi
+
 if [[ ! $INITIALISED_MODULES ]]; then
-    for module in $ZDOTDIR/custom/modules/*.zsh; do
+    for module in $ZDOTDIR/modules/*.zsh; do
         . $module
     done
 
@@ -10,17 +18,17 @@ if [[ ! $INITIALISED_MODULES ]]; then
 fi
 
 if [[ ! $INITIALISED_PACKAGES ]]; then
-    for package in $ZDOTDIR/custom/packages/*/; do
+    for package in $ZDOTDIR/packages/*/; do
         package_name=$(basename $package)
 
-        . "$ZDOTDIR/custom/packages/$package_name/${package_name}.zsh"
+        . "$package/${package_name}.zsh"
     done
 
     INITIALISED_PACKAGES=true
 fi
 
 if [[ ! $INITIALISED_ALIASES ]]; then
-    for aliases_ in $ZDOTDIR/custom/aliases/*.zsh; do
+    for aliases_ in $ZDOTDIR/aliases/*.zsh; do
         . $aliases_
     done
 
