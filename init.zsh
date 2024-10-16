@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
-. $ZDOTDIR/setup-zim.zsh
+if [[ ! $INITIALISED_ZIM ]]; then
+    . $ZDOTDIR/setup-zim.zsh
+
+    INITIALISED_ZIM=true
+fi
 
 if [[ ! $RAN_BEFORE_SCRIPTS ]]; then
     for script in $ZDOTDIR/before/*.zsh; do
