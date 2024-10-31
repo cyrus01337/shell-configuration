@@ -59,6 +59,8 @@ if which git &> /dev/null
     end
 
     function git-submodule-remove
+        set submodule $argv[1]
+
         git submodule deinit -f -- $submodule
         rm -rf .git/modules/$submodule
         git rm --cached $submodule
