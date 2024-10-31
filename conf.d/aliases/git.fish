@@ -36,6 +36,10 @@ if which git &> /dev/null
         git push
     end
 
+    function git-add-submodule --wraps "git submodule add"
+        git submodule add
+    end
+
     function git-init-submodule --wraps "git submodule update"
         git submodule update --init --recursive
     end
@@ -44,6 +48,7 @@ if which git &> /dev/null
         git submodule update --recursive --remote
     end
 
+    alias gasm="git-add-submodule"
     alias gism="git-init-submodule"
     alias gusm="git-update-submodule"
 
