@@ -42,6 +42,6 @@ jobs:
 
                 echo "Request status code: $status_code..."
 
-                if [[ ! $(( $status_code >= 200 && $status_code <= 299 )) ]]; then
+                if ! (( $status_code >= 200 && $status_code <= 299 )); then
                     exit 1
                 fi
