@@ -38,10 +38,10 @@ jobs:
                         -H "X-GitHub-Api-Version: 2022-11-28" \
                         https://api.github.com/repos/cyrus01337/shell-devcontainer/dispatches \
                         -d "{'event_type':'Handle build request (shell-configuration@$SHORT_COMMIT_HASH)'}" \
-                        | jq ".status"
+                        | jq ".status" \
                         | sed -E 's/"(.+)"/\1/'
                 )
 
-                if ! (( $status_code >= 200 && $status_code <= 299 )); then
+                if [[ ! $(( $status_code >= 200 && $status_code <= 299 )) ]]; then
                     exit 1
                 fi
