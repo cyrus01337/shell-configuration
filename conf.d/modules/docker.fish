@@ -49,7 +49,7 @@ if silence which docker
 
     silence docker image ls
 
-    if [ $status != 0 ]; and [ -f /.dockerenv ]; and "$USER_IN_DOCKER_GROUP" != "" ]
+    if [ $status != 0 ]; and [ -f /.dockerenv ]; and [ "$USER_IN_DOCKER_GROUP" != "" ]
         # There is a bug within devcontainers where if it uses
         # docker-outside-of-docker, running any Docker command fails despite
         # being assigned to the Docker group, so we modify the permissions of
