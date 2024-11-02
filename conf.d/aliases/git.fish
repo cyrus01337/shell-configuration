@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-if which git &> /dev/null
+if command -q git
     alias g="git"
     alias gb="git branch"
     alias gch="git checkout"

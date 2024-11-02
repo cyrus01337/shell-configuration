@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-if which nvim &> /dev/null
+if command -q nvim
     function n --wraps nvim
         set target $argv[1]
 
@@ -9,7 +9,7 @@ if which nvim &> /dev/null
             nvim $target $argv[2..]
         end
     end
-else if which docker &> /dev/null
+else if command -q docker
     function n --wraps "zsh"
         set target $argv[1]
         set default_flags -it --rm

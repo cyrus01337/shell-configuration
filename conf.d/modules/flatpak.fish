@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-if which flatpak &> /dev/null
+if command -q flatpak
     fish_add_path "/var/lib/flatpak/exports/bin"
 end
 

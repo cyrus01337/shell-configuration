@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-if which devpod &> /dev/null
+if command -q devpod
     function devpod-ssh-cwd --wraps ssh
         ssh (basename $PWD).devpod
     end

@@ -5,7 +5,7 @@ function silence
     return $status
 end
 
-if silence which docker
+if command -q docker
     set USER_IN_DOCKER_GROUP (id -nG "$USER" | grep docker)
 
     function ollama

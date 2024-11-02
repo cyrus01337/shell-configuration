@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-if which docker &> /dev/null
+if command -q docker
     alias d="docker"
     alias db="docker build"
     alias dcb="dc build"
