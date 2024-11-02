@@ -10,7 +10,7 @@ set SUPPORTED_SYSTEM_PACKAGE_MANAGERS "apt-get" "dnf"
 
 function naively_find_system_package_manager
     for system_package_manager in $SUPPORTED_SYSTEM_PACKAGE_MANAGERS
-        if which $system_package_manager &> /dev/null
+        if command -q $system_package_manager
             echo $system_package_manager
 
             return 0
