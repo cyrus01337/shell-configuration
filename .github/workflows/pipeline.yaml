@@ -28,8 +28,6 @@ jobs:
                 SHORT_COMMIT_HASH: ${{ env.SHORT_COMMIT_HASH }}
                 WORKFLOW_DISPATCH_TOKEN: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
               run: |
-                echo $SHORT_COMMIT_HASH
-
                 status_code=$(
                     curl -L \
                         -X POST \
@@ -41,6 +39,8 @@ jobs:
                         | jq ".status" \
                         | sed -E 's/"(.+)"/\1/'
                 )
+
+                echo "Request status code: $status_code..."
 
                 if [[ ! $(( $status_code >= 200 && $status_code <= 299 )) ]]; then
                     exit 1
