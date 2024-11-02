@@ -39,6 +39,7 @@ jobs:
                 )
                 status_code=$( echo $response | jq ".status" | sed -E 's/"(.+)"/\1/' )
 
+                echo "Responded with JSON body: $response"
                 echo "Request status code: $status_code..."
 
                 if ! (( $status_code >= 200 && $status_code <= 299 )); then
