@@ -3,6 +3,13 @@ name: Dispatch build event to cyrus01337/shell-devcontainer
 on:
     push:
         branches: ["main"]
+        paths:
+            - "completions/"
+            - "conf.d/"
+            - "functions/"
+            - "config.fish"
+            - "fish_plugins"
+            - ".github/workflows/**"
     workflow_dispatch:
 
 jobs:
