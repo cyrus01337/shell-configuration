@@ -18,14 +18,12 @@ function detect_javascript
     else if [ -f "bun.lockb" ]
         set P_PACKAGE_MANAGER "bun"
         set PX_COMMAND "bunx"
+    else
+        return 127
     end
 
-    if [ $P_PACKAGE_MANAGER != "" ]; and [ $PX_COMMAND != "" ]
-        echo $P_PACKAGE_MANAGER
-        echo $PX_COMMAND
+    echo $P_PACKAGE_MANAGER
+    echo $PX_COMMAND
 
-        return 0
-    end
-
-    return 127
+    return 0
 end
