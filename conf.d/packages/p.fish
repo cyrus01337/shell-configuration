@@ -1,86 +1,165 @@
 #!/usr/bin/env fish
 # https://medium.com/@chantastic/p-525e68f17e56
-set FILE (status --current-filename)
-set P_DIRECTORY (dirname $FILE)
-set PROJECT_LANGUAGE ""
-set P_PACKAGE_MANAGER ""
-set PX_COMMAND ""
-set SUPPORTED_LANGUAGES "javascript"
-set SUPPORTED_SYSTEM_PACKAGE_MANAGERS "apt-get"
+set P_LOGS
+set P_LOADED
+set P_FILE (status --current-filename)
+set P_DIRECTORY (dirname $P_FILE)
+set P_SUPPORTED_LANGUAGES "javascript"
+set P_SUPPORTED_SYSTEM_PACKAGE_MANAGERS "apt-get"
 
-function find_loader_from_list
-    set loader_names $argv
+if not set -q P_DISABLE_LOGGING
+    set P_DISABLE_LOGGING false
+end
 
-    for name in $loader_names
-        set loader_found "detect_$name"
+function log
+    set message $argv
+    set -a P_LOGS "p: $message"
+end
 
-        source "$P_DIRECTORY/loaders/$name.fish"
+function teardown_aliases
+    if functions | string match "p_teardown" &> /dev/null
+        p_teardown
 
-        set cached_status $status
-        set executables ($loader_found)
+        set teardown_status $status
 
-        if [ $cached_status = 0 ]
-            # TODO: Make the 1st argument a flag to determine whether the
-            # command should be ran with sudo
-            echo $language
-            echo $executables[1]
-            echo $executables[2]
-
-            return 0
+        if [ $teardown_status != 0 ]
+            log "Teardown for $P_LOADED failed with exit code $teardown_status"
         end
+
+        functions --erase p_teardown
+    end
+
+    return 0
+end
+
+function show_log
+    if not set -q $P_LOGS[1]
+        return 0
+    end
+
+    if [ $P_DISABLE_LOGGING = true ]; or [ $P_DISABLE_LOGGING = 1 ]
+        set P_LOGS
+
+        return 0
+    end
+
+    for message in $P_LOGS
+        echo $message
+    end
+
+    set P_LOGS
+
+    return 0
+end
+
+function loader_exists
+    set script_path $argv[1]
+
+    if not [ -f $script_path ]
+        log "Skipping $name loader as not found..."
+
+        return 1
+    end
+
+    return 0
+end
+
+function loader_runs
+    set loader $argv[1]
+
+    source $loader
+
+    set loader_status $status
+
+    if [ $loader_status != 0 ]; and [ $loader_status != 127 ]
+        log "$name.fish failed with exit code $loader_status"
+    end
+
+    return $loader_status
+end
+
+function bootstrap
+    set package_manager $argv[1]
+
+    if not functions | string match "p_detect" &> /dev/null
+        log "Unable to find detect hook function \"p_detect\" when loading $package_manager"
+
+        return 1
+    end
+
+    if not p_detect
+        log "$package_manager is currently unsupported, feature requests and PRs welcome!"
+    end
+
+    if not functions | string match "p_setup" &> /dev/null
+        log "Unable to find detect hook function \"p_setup\" when loading $package_manager"
+
+        return 1
+    end
+
+    if not p_setup
+        log "Bootstrapping $name failed with exit code $bootstrap_status"
+    end
+
+    functions --erase p_detect p_setup
+
+    return $setup_status
+end
+
+function process_loaders_from_list
+    set names $argv
+
+    for name in $names
+        set script_path "$P_DIRECTORY/loaders/$name.fish"
+
+        if not begin
+            loader_exists $script_path
+            and loader_runs $script_path
+            and bootstrap $name
+        end
+            continue
+        end
+
+        set P_LOADED $name
+
+        return 0
     end
 
     return 127
 end
 
 function auto_detect_package_manager
-    set payload (find_loader_from_list $SUPPORTED_LANGUAGES)
+    if not set -q $P_LOADED[1]
+        teardown_aliases
+
+        set P_LOADED
+    end
+
+    set payload (process_loaders_from_list $P_SUPPORTED_LANGUAGES)
 
     if [ $status != 0 ]
-        set payload (find_loader_from_list $SUPPORTED_SYSTEM_PACKAGE_MANAGERS)
-
-        if [ $status != 0 ]
-            return 127
-        end
+        set payload (process_loaders_from_list $P_SUPPORTED_SYSTEM_PACKAGE_MANAGERS)
     end
 
-    if [ $status = 0 ]
-        set PROJECT_LANGUAGE $payload
-        set P_PACKAGE_MANAGER "$payload[1]"
-        set PX_COMMAND "$payload[2]"
-    end
+    show_log
 
     return 0
 end
 
-function p
-    set subcommand $argv[1]
-    set arguments $argv[2..]
-
-    if not [ $subcommand ]
-        $P_PACKAGE_MANAGER
-    else if [ $subcommand = "query" ]
-        echo $P_PACKAGE_MANAGER $arguments
-    else
-        $P_PACKAGE_MANAGER $arguments
-    end
-end
-
-function px
-    set subcommand $argv[1]
-    set arguments $argv[2..]
-
-    if not [ $subcommand ]
-        $PX_COMMAND
-    else if [ $subcommand = "query" ]
-        echo $PX_COMMAND $arguments
-    else
-        $PX_COMMAND $arguments
-    end
-end
-
 function on_pwd_change --on-variable PWD
+    set previously_loaded $P_LOADED
+
     auto_detect_package_manager
+
+    if [ $previously_loaded != $P_LOADED ]
+        set name $P_LOADED
+
+        if not set -q P_LOADED[1]
+            set name "<none>"
+        end
+
+        echo "p: Switching aliases for $name..."
+    end
 end
 
 auto_detect_package_manager
