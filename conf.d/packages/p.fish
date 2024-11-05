@@ -49,21 +49,27 @@ end
 
 function p
     set subcommand $argv[1]
+    set arguments $argv[2..]
 
     if not [ $subcommand ]
         $P_PACKAGE_MANAGER
     else if [ $subcommand = "query" ]
-        echo $P_PACKAGE_MANAGER $argv[2..]
+        echo $P_PACKAGE_MANAGER $arguments
+    else
+        $P_PACKAGE_MANAGER $arguments
     end
 end
 
 function px
     set subcommand $argv[1]
+    set arguments $argv[2..]
 
     if not [ $subcommand ]
         $PX_COMMAND
     else if [ $subcommand = "query" ]
-        echo $PX_COMMAND $argv[2..]
+        echo $PX_COMMAND $arguments
+    else
+        $PX_COMMAND $arguments
     end
 end
 
