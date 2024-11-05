@@ -1,5 +1,4 @@
 #!/usr/bin/env fish
-# TODO: Add flag to determine whether commands should be ran with sudo
 # https://medium.com/@chantastic/p-525e68f17e56
 set FILE (status --current-filename)
 set P_DIRECTORY (dirname $FILE)
@@ -74,10 +73,6 @@ function on_pwd_change --on-variable PWD
     set previous_package_manager $P_PACKAGE_MANAGER
 
     auto_detect_package_manager
-
-    if [ $P_PACKAGE_MANAGER != $previous_package_manager ]
-        echo "p: $PROJECT_LANGUAGE detected, autoloading $P_PACKAGE_MANAGER aliases"
-    end
 end
 
 auto_detect_package_manager
