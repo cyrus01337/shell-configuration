@@ -6,7 +6,7 @@ set PROJECT_LANGUAGE ""
 set P_PACKAGE_MANAGER ""
 set PX_COMMAND ""
 set SUPPORTED_LANGUAGES "javascript"
-set SUPPORTED_SYSTEM_PACKAGE_MANAGERS "apt-get" "dnf"
+set SUPPORTED_SYSTEM_PACKAGE_MANAGERS "apt-get"
 
 function find_loader_from_list
     set loader_names $argv
@@ -80,8 +80,6 @@ function px
 end
 
 function on_pwd_change --on-variable PWD
-    set previous_package_manager $P_PACKAGE_MANAGER
-
     auto_detect_package_manager
 end
 
