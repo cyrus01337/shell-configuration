@@ -8,10 +8,23 @@ set PX_COMMAND ""
 set SUPPORTED_LANGUAGES "javascript"
 set SUPPORTED_SYSTEM_PACKAGE_MANAGERS "apt-get" "dnf"
 
-function naively_find_system_package_manager
-    for system_package_manager in $SUPPORTED_SYSTEM_PACKAGE_MANAGERS
-        if command -q $system_package_manager
-            echo $system_package_manager
+function find_loader_from_list
+    set loader_names $argv
+
+    for name in $loader_names
+        set loader_found "detect_$name"
+
+        source "$P_DIRECTORY/loaders/$name.fish"
+
+        set cached_status $status
+        set executables ($loader_found)
+
+        if [ $cached_status = 0 ]
+            # TODO: Make the 1st argument a flag to determine whether the
+            # command should be ran with sudo
+            echo $language
+            echo $executables[1]
+            echo $executables[2]
 
             return 0
         end
@@ -21,26 +34,23 @@ function naively_find_system_package_manager
 end
 
 function auto_detect_package_manager
-    for language in $SUPPORTED_LANGUAGES
-        set loader_found "detect_$language"
+    set payload (find_loader_from_list $SUPPORTED_LANGUAGES)
 
-        source "$P_DIRECTORY/loaders/$language.fish"
+    if [ $status != 0 ]
+        set payload (find_loader_from_list $SUPPORTED_SYSTEM_PACKAGE_MANAGERS)
 
-        set cached_status $status
-        set executables ($loader_found)
-
-        if [ $cached_status = 0 ]
-            set PROJECT_LANGUAGE $language
-            set P_PACKAGE_MANAGER "$executables[1]"
-            set PX_COMMAND "$executables[2]"
-
-            break
+        if [ $status != 0 ]
+            return 127
         end
     end
 
-    if [ $P_PACKAGE_MANAGER = "" ]; and [ $PX_COMMAND = "" ]
-        set P_PACKAGE_MANAGER (naively_find_system_package_manager)
+    if [ $status = 0 ]
+        set PROJECT_LANGUAGE $payload
+        set P_PACKAGE_MANAGER "$payload[1]"
+        set PX_COMMAND "$payload[2]"
     end
+
+    return 0
 end
 
 function p
