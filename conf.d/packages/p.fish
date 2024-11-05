@@ -31,10 +31,6 @@ function auto_detect_package_manager
 
         if [ $cached_status = 0 ]
             set PROJECT_LANGUAGE $language
-            # Despite arrays in zsh being zero-indexed, the 0th element refuses
-            # to exist for reasons I am humanly fucking incapable of
-            # understanding - if someone knows why, please reach out as this
-            # feels like a reach in itself
             set P_PACKAGE_MANAGER "$executables[1]"
             set PX_COMMAND "$executables[2]"
 
