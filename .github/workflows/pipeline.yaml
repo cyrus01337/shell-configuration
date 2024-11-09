@@ -10,7 +10,6 @@ on:
             - "config.fish"
             - "fish_plugins"
             - ".github/workflows/**"
-            - ".python-version"
     workflow_dispatch:
 
 jobs:
