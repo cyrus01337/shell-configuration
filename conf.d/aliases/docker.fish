@@ -24,6 +24,6 @@ if command -q docker
     end
 
     function docker-remove-untagged-images --wraps "docker rmi -f"
-        docker rmi -f $(docker images --filter "dangling=true" -q --no-trunc)
+        docker images --filter "dangling=true" -q --no-trunc | xargs -I {} parallel rmi -f {}
     end
 end
