@@ -46,7 +46,7 @@ if command -q git
     end
 
     function git-update-submodule --wraps "git submodule update --recursive --remote"
-        git submodule update --recursive --remote
+        git submodule update --recursive --remote --merge
     end
 
     alias gasm="git-add-submodule"
