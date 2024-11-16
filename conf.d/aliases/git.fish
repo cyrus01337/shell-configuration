@@ -71,4 +71,8 @@ if command -q git
         rm -rf .git/modules/$submodule
         git rm --cached $submodule
     end
+
+    function git-save-credentials
+        git config --global credential.helper store
+    end
 end
