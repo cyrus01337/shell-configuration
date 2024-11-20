@@ -40,7 +40,7 @@ if command -q git
     end
 
     function git-add-submodule --wraps "git submodule add"
-        git submodule add
+        git submodule add $argv
     end
 
     function git-init-submodule --wraps "git submodule update"
