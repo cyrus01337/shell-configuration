@@ -4,9 +4,9 @@ on:
     push:
         branches: ["main"]
         paths:
-            - "completions/"
-            - "conf.d/"
-            - "functions/"
+            - "completions/**"
+            - "conf.d/**"
+            - "functions/**"
             - "config.fish"
             - "fish_plugins"
             - ".github/workflows/**"
