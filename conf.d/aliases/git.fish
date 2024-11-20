@@ -6,6 +6,7 @@ if command -q git
     alias gcl="git clone"
     alias gco="git commit"
     alias gd="git diff"
+    alias gds="git diff --staged"
     alias gi="git init"
     alias gm="git merge"
     alias gr="git remote"
