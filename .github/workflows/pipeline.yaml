@@ -3,13 +3,12 @@ name: Pipeline
 on:
     push:
         branches: ["main"]
-        paths:
-            - "completions/**"
-            - "conf.d/**"
-            - "functions/**"
-            - "config.fish"
-            - "fish_plugins"
+        paths-ignore:
+            - ".github/**"
+            - "external/**"
+            - ".devcontainer.json"
             - ".github/workflows/**"
+            - ".editorconfig"
     workflow_dispatch:
 
 jobs:
