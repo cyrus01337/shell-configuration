@@ -78,3 +78,11 @@ if command -q git
         git config --global credential.helper store
     end
 end
+
+if command -q gh
+    function gh-repo-clone --wraps "gh repo clone"
+        gh repo clone "git@github.com:$argv"
+    end
+
+    alias ghrc="gh-repo-clone"
+end
