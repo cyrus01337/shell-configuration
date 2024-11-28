@@ -1,5 +1,6 @@
 #!/usr/bin/env fish
 set -x EDITOR "vi"
+set -x GOPATH "$HOME/.local/go"
 set -x GNUPGHOME "$HOME/.local/gnupg"
 set -x INPUTRC "$HOME/.inputrc"
 set -gx LANG "en_GB.UTF-8"
