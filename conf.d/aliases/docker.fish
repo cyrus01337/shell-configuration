@@ -26,4 +26,15 @@ if command -q docker
     function docker-remove-untagged-images --wraps "docker rmi -f"
         docker images --filter "dangling=true" -q --no-trunc | xargs -I {} parallel rmi -f {}
     end
+
+    function docker-build-test-image --wraps "docker build -t test"
+        set context $argv[1]
+        set flags $argv[2..]
+
+        if set -q context
+            set context "."
+        end
+
+        docker build -t test $flags $context
+    end
 end
