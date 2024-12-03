@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-if [ -f "$HOME/.bun/bin/bun" ]
+if [ -s "$HOME/.bun/bin/bun" ]
     set -x BUN_INSTALL "$HOME/.bun"
 
     fish_add_path "$BUN_INSTALL/bin"
