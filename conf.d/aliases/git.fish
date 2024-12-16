@@ -6,6 +6,8 @@ if command -q git
     alias gcl="git clone"
     alias gca="git commit --amend"
     alias gcm="git commit"
+    alias gco="git config"
+    alias gcog="git config --global"
     alias gd="git diff"
     alias gds="git diff --staged"
     alias gi="git init"
@@ -16,20 +18,32 @@ if command -q git
     alias gps="git push"
     alias gsm="git submodule"
 
+    alias git-add-submodule "git submodule add"
+    alias git-initialise-submodules "git submodule update --init --recursive"
+    alias git-save-credentials "git config --global credential.helper store"
+    alias git-update-submodule "git submodule update --remote --recursive --merge"
+    alias gasm="git-add-submodule"
+    alias gism="git-init-submodule"
+    alias gusm="git-update-submodule"
+
     function ga --wraps "git add"
-        if not [ $argv[1] ]
-            git add .
-        else
-            git add $argv
+        set files $argv
+
+        if not [ $files ]
+            set files "."
         end
+
+        git add $files
     end
 
     function gpsu --wraps "git push"
-        if not [ $argv[1] ]
-            git push -u origin main
-        else
-            git push -u origin $argv
+        set branch $argv[1]
+
+        if not [ $branch ]
+            set branch "main"
         end
+
+        git push -u origin $branch
     end
 
     function fix-formatting-commit
@@ -38,22 +52,6 @@ if command -q git
         git commit -m "Fix formatting"
         git push
     end
-
-    function git-add-submodule --wraps "git submodule add"
-        git submodule add $argv
-    end
-
-    function git-init-submodule --wraps "git submodule update"
-        git submodule update --init --recursive
-    end
-
-    function git-update-submodule --wraps "git submodule update --recursive --remote"
-        git submodule update --recursive --remote --merge
-    end
-
-    alias gasm="git-add-submodule"
-    alias gism="git-init-submodule"
-    alias gusm="git-update-submodule"
 
     function git-fetch-all-branches
         for remote in (git branch -r | grep -v '\->' | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g")
@@ -72,10 +70,6 @@ if command -q git
         git submodule deinit -f -- $submodule
         rm -rf .git/modules/$submodule
         git rm --cached $submodule
-    end
-
-    function git-save-credentials
-        git config --global credential.helper store
     end
 end
 
