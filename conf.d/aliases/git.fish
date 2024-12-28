@@ -23,7 +23,7 @@ if command -q git
     alias git-save-credentials "git config --global credential.helper store"
     alias git-update-submodule "git submodule update --remote --recursive --merge"
     alias gasm="git-add-submodule"
-    alias gism="git-init-submodule"
+    alias gism="git-initialise-submodules"
     alias gusm="git-update-submodule"
 
     function ga --wraps "git add"
