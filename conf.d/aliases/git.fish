@@ -85,7 +85,7 @@ if command -q gh
             set author $GITHUB_AUTHOR
         end
 
-        gh repo clone "git@github.com:$author/$repository"
+        gh repo clone "git@github.com:$author/$repository" -- --recurse-submodules
     end
 
     alias ghrc="gh-repo-clone"
