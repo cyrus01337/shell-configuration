@@ -3,7 +3,7 @@ if command -q git
     alias g="git"
     alias gb="git branch"
     alias gch="git checkout"
-    alias gcl="git clone"
+    alias gcl="git clone --recurse-submodules"
     alias gca="git commit --amend"
     alias gcn="git config"
     alias gco="git commit"
