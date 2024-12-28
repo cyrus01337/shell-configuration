@@ -21,6 +21,13 @@ function p_setup
         alias pci "npm ci"
         alias pi "npm install"
         alias px "npx"
+    else if [ -f "bun.lockb" ]
+        alias p "bun"
+        alias pa "bun add"
+        alias pad "bun add --dev"
+        alias pci "bun install --frozen-lockfile"
+        alias pi "bun install"
+        alias px "bunx"
     else
         return 127
     end
