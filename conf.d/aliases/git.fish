@@ -16,6 +16,7 @@ if command -q git
     alias gps="git push"
     alias gr="git remote"
     alias gra="git remote add"
+    alias gst="git status"
     alias gsm="git submodule"
 
     alias git-add-submodule "git submodule add"
