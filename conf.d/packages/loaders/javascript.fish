@@ -16,6 +16,9 @@ end
 function p_setup
     if [ -f "package-lock.json" ]
         alias p "npm"
+        alias pa "npm install"
+        alias pad "npm install --save-dev"
+        alias pci "npm ci"
         alias pi "npm install"
         alias px "npx"
     else
@@ -26,7 +29,7 @@ function p_setup
 end
 
 function p_teardown
-    functions --erase p pi px
+    functions --erase p pa pad pci pi px
 
     return 0
 end
