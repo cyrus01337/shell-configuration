@@ -2,9 +2,9 @@
 function p_detect
     if begin
         [ -f "package-lock.json" ]
-        or [ -f "yarn.lock" ]
-        or [ -f "pnpm-lock.yaml" ]
-        or [ -f "deno.lock" ]
+        # or [ -f "yarn.lock" ]
+        # or [ -f "pnpm-lock.yaml" ]
+        # or [ -f "deno.lock" ]
         or [ -f "bun.lockb" ]
     end
         return 0
