@@ -12,10 +12,10 @@ if command -q git
     alias gds="git diff --staged"
     alias gi="git init"
     alias gm="git merge"
-    alias gr="git remote"
-    alias gra="git remote add"
     alias gpl="git pull"
     alias gps="git push"
+    alias gr="git remote"
+    alias gra="git remote add"
     alias gsm="git submodule"
 
     alias git-add-submodule "git submodule add"
