@@ -22,10 +22,11 @@ if command -q git
     alias git-add-submodule "git submodule add"
     alias git-initialise-submodules "git submodule update --init --recursive"
     alias git-save-credentials "git config --global credential.helper store"
-    alias git-update-submodule "git submodule update --remote --recursive --merge"
+    alias git-update-submodules "git submodule update --remote"
     alias gasm="git-add-submodule"
     alias gism="git-initialise-submodules"
-    alias gusm="git-update-submodule"
+    alias gusm="git-update-submodules"
+    alias gusmr="git-update-submodules --recursive"
 
     function ga --wraps "git add"
         set files $argv
