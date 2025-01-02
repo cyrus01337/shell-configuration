@@ -19,14 +19,20 @@ function p_setup
         alias pa "npm install"
         alias pad "npm install --save-dev"
         alias pci "npm ci"
+        alias pd "npm run dev"
+        alias pf "npm run format"
         alias pi "npm install"
+        alias pl "npm run lint"
         alias px "npx"
     else if [ -f "bun.lockb" ]
         alias p "bun"
         alias pa "bun add"
         alias pad "bun add --dev"
         alias pci "bun install --frozen-lockfile"
+        alias pd "bun run dev"
+        alias pf "bun run format"
         alias pi "bun install"
+        alias pl "bun run lint"
         alias px "bunx"
     else
         return 127
@@ -36,7 +42,7 @@ function p_setup
 end
 
 function p_teardown
-    functions --erase p pa pad pci pi px
+    functions --erase p pa pad pci pd pf pi pl px
 
     return 0
 end
