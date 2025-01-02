@@ -78,7 +78,7 @@ end
 if command -q gh
     function gh-repo-clone --wraps "gh repo clone"
         set repository_shorthand $argv[1]
-        set matches (string match -r "^(.+)/(.+)$$" $repository_shorthand)
+        set matches (string match -r "(.+)/(.+)" $repository_shorthand)
         set author $matches[1]
         set repository $matches[2]
 
